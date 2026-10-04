@@ -1,0 +1,21 @@
+.env
+.env.local
+
+# Official upstream is cloned at bootstrap time and is not vendored here.
+vendor/self-hosted/
+
+# Runtime and backup data can contain secrets and customer event data.
+backups/
+runtime/
+*.log
+
+# Local or generated Sentry configuration.
+config/*.local.*
+config/*secret*
+config/credentials.*
+config/relay.*
+config/sentry.conf.py
+config/config.yml
+
+.DS_Store
+

@@ -1,0 +1,10 @@
+# Singleton infrastructure route owned by tsentry. Cloudflare terminates public
+# TLS and forwards HTTP through the existing tunnel to this Caddy instance.
+http://sentry.mangagaki.net {
+	reverse_proxy host.docker.internal:9000 {
+		# Caddy preserves Host and sets X-Forwarded-Host by default. Force the
+		# public scheme because the Cloudflare Tunnel-to-Caddy hop is HTTP.
+		header_up X-Forwarded-Proto https
+		header_up X-Forwarded-Port 443
+	}
+}
